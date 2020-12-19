@@ -1,0 +1,18 @@
+﻿@model List<HesabAccountUser>
+@{
+    ViewBag.Title = "Hesab Accounts";
+}
+<h3 class="display-4" align="center">Your Hesab Accounts</h3>
+<br>
+@foreach (var a in Model)
+{
+    <div class="card card-dark bg-dark" style="width:100%; color: white;">
+        <div class="card-body">
+            <h5 class="card-title">@a.HesabAccount.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@a.HesabAccount.Balance</h6>
+            <p class="lead">@a.HesabAccount.Description</p>
+            <a class="btn btn-primary" asp-action="Detail" asp-controller="HesabAccount" asp-route-id="@a.HesabAccount.ID">View</a>
+
+        </div>
+    </div>
+}

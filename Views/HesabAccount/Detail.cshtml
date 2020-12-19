@@ -1,0 +1,121 @@
+@model HesabAccountDetailViewModel
+
+<div class='row'>
+    <div class="col">
+        <h3>@Model.HesabAccount.Name</h3>
+    </div>
+    <div class="col">
+        <h3>Balance:<b> @Model.HesabAccount.Balance</b></h3>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="color:white;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" align="Center">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="All">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="Today">Today</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="Week">This Week</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="DateTime">Oldest First</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="DateTimeDescending">Newest First</a>
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>
+
+    </select>
+    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">RS</th>
+      <th scope="col">What</th>
+      <th scope="col">When</th>
+      <th scope="col">From</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var a in Model.Expenses)
+{
+    <tr>
+      <td scope="row">@a.Amount</td>
+      <td>@a.Description</td>
+      <td>@a.DateTime</td>
+      <td>@a.ApplicationUser.Email</td>
+      <td><a asp-action="DeleteExpense" asp-controller="Home" asp-route-id="@a.ID" class="btn btn-danger">Delete</a></td>
+    </tr>
+}
+
+    
+  </tbody>
+</table>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="color:white;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" align="Center">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Deposit" asp-route-sortType="All">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Deposit" asp-route-sortType="Today">Today</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Deposit" asp-route-sortType="Week">This Week</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Deposit" asp-route-sortType="DateTime">Oldest First</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Deposit" asp-route-sortType="DateTimeDescending">Newest First</a>
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>
+</table>
+    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">RS</th>
+      <th scope="col">What</th>
+      <th scope="col">When</th>
+      <th scope="col">From</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var a in Model.Deposits)
+{
+    <tr>
+      <td scope="row">@a.Amount</td>
+      <td>@a.Description</td>
+      <td>@a.DateTime</td>
+      <td>@a.ApplicationUser.Email</td>
+      <td><a asp-action="DeleteDeposit" asp-controller="Home" asp-route-id="@a.ID" class="btn btn-danger">Delete</a></td>
+    </tr>
+}
+
+    
+  </tbody>
+</table>
+</div>
+
+</div>

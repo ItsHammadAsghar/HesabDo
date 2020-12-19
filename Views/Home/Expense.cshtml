@@ -1,0 +1,106 @@
+﻿@model ExpenseViewModel
+@{
+    ViewBag.Title = "Expense";
+}
+
+<h3 class="display-4" align="center">Add Expense</h3>
+<br>
+
+<div class="card card-dark bg-dark" style=" color: white;">
+
+<div class="row card-body">
+    <div class="col-md-12">
+        <form method="post" asp-action="Expense" asp-controller="Home">
+            <div asp-validation-summary="All" class="text-danger"></div>
+              <div class="row">
+                <div class="col">
+                <input type="text" class="form-control" asp-for="Amount" placeholder="Amount">
+                </div>
+                <div class="col">
+                <input type="text" class="form-control" asp-for="Description" placeholder="Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTime"></label>
+                <input asp-for="DateTime" class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>HesabAccount</label>
+                <select asp-for="HesabAccountID" class="form-control">
+                    @foreach (var a in Model.Items)
+                    {
+                        <option value="@a.ID">@a.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="HesabAccountID" class="text-danger"></span>
+            </div>
+
+
+            <button type="submit" style="width: 100%;" class="btn btn-primary">Kharcho</button><br>
+
+
+        </form>
+    </div>
+    <br>
+    <br>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="color:white;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" align="Center">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="All">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="Today">Today</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="Week">This Week</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="DateTime">Oldest First</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" asp-action="Sort" asp-controller="Home" asp-route-table="Expense" asp-route-sortType="DateTimeDescending">Newest First</a>
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>
+
+    </select>
+    <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">RS</th>
+      <th scope="col">What</th>
+      <th scope="col">When</th>
+      <th scope="col">For</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var a in Model.AllExpenses)
+{
+    <tr>
+      <td scope="row">@a.Amount</td>
+      <td>@a.Description</td>
+      <td>@a.DateTime</td>
+      <td>@a.HesabAccount.Name</td>
+      <td><a asp-action="DeleteExpense" asp-controller="Home" asp-route-id="@a.ID" class="btn btn-danger">Delete</a></td>
+    </tr>
+}
+
+    
+  </tbody>
+</table>
+</div>
+
+</div>
